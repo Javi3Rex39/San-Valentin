@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz San Valentín 💖</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="assets/log.webp" as="image" type="image/webp" />
+    <link rel="preload" href="assets/img2.webp" as="image" type="image/webp" />
+    <link rel="preload" href="assets/img3.webp" as="image" type="image/webp" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+      body {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none; /* Estándar */
+        -webkit-tap-highlight-color: transparent; /* Evita el destello azul en móviles */
+      }
+
+      :root {
+        --color-petalo-principal: rgb(255, 105, 180); /* Hot Pink */
+        --color-petalo-gradiente: #8a002e; /* Rojo oscuro */
+        --color-petalo-neon: rgba(255, 20, 147, 0.7); /* Deep Pink */
+        --color-centro-flor: #fff4fb;
+        --color-centro-flor-sombra: #ff0055;
+        --color-luz-particula-1: #ff2c75;
+        --color-luz-particula-2: #ffffff;
+        --color-tallo-principal: #58001e;
+        --color-tallo-hoja: #8a0035;
+        --color-pasto-brillante: #851d45;
+        --color-sombra-hojas: rgba(239, 0, 80, 0.2);
+        --color-luz-hojas: rgba(255, 200, 200, 0.2);
+        --color-fondo-oscuro: #050002;
+        --color-superposicion-fondo: rgba(20, 0, 5, 0.75);
+        --color-titulo: #ff69b4;
+        --color-titulo-neon: rgba(255, 0, 100, 0.378);
+        --color-sombra-titulo: rgba(50, 0, 0, 0.7);
+        --color-overlay-glow: rgba(255, 40, 100, 0.8);
+        --color-overlay-title: #ffffff;
+        --color-overlay-title-neon: rgba(255, 200, 220, 0.7);
+      }
+
+      *,
+      *::after,
+      *::before {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(
+          to bottom,
+          #ff0e6e,
+          #5f0029,
+          var(--color-fondo-oscuro)
+        );
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        overflow: hidden;
+        perspective: 1000px;
+      }
+
+      #instruction-text {
+        position: absolute;
+        bottom: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        font-family: "Sour Gummy", sans-serif;
+        color: #fff;
+
+        font-size: clamp(1.8rem, 6vw, 4rem);
+
+        text-shadow:
+          0 0 10px #ff006a,
+          0 0 20px #ff006a;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+        animation: instruction-heartbeat 1.5s infinite ease-in-out;
+        white-space: nowrap;
+      }
+
+      @keyframes instruction-heartbeat {
+        0%,
+        100% {
+          transform: translateX(-50%) scale(1);
+          text-shadow: 0 0 10px #ff006a;
+        }
+        50% {
+          transform: translateX(-50%) scale(1.1);
+          text-shadow:
+            0 0 25px #ff69b4,
+            0 0 40px #ff006a;
+        }
+      }
+
+      .title-container {
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 1500px;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out 0.5s;
+      }
+
+      .main-title {
+        color: var(--color-titulo);
+        font-family: "Sour Gummy", sans-serif;
+        font-size: clamp(2.5rem, 10vw, 5.5rem);
+        text-align: center;
+        margin: 0;
+        text-shadow:
+          0 0 10px var(--color-titulo-neon),
+          0 0 25px var(--color-titulo-neon),
+          0 0 45px #ff0055,
+          2px 2px 5px var(--color-sombra-titulo);
+        animation: glow-animation 2s ease-in-out infinite alternate;
+      }
+
+      .flower__leaf {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 8vmin;
+        height: 11vmin;
+        border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
+        background-color: var(--color-petalo-principal);
+        background-image: linear-gradient(
+          to top,
+          var(--color-petalo-gradiente),
+          var(--color-petalo-principal)
+        );
+        transform-origin: bottom center;
+        opacity: 0.9;
+        box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.5);
+        filter: drop-shadow(0 0 5px var(--color-petalo-neon));
+        will-change: transform;
+      }
+
+      .title-image {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 0 20px rgb(255, 0, 85);
+        flex-shrink: 0;
+      }
+
+      .night {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-superposicion-fondo);
+        z-index: -1;
+      }
+
+      .flowers {
+        position: relative;
+        transform: scale(0.9);
+      }
+
+      .flower {
+        position: absolute;
+        bottom: 10vmin;
+        transform-origin: bottom center;
+        z-index: 10;
+        --fl-speed: 0.8s;
+        will-change: transform;
+        contain: layout style;
+      }
+
+      .flower--1 {
+        animation: moving-flower-1 4s linear infinite;
+      }
+      .flower--1 .flower__line {
+        height: 70vmin;
+        animation-delay: 0.3s;
+      }
+      .flower--1 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 1.6s backwards;
+      }
+      .flower--1 .flower__line__leaf--2 {
+        animation: blooming-leaf-right var(--fl-speed) 1.4s backwards;
+      }
+      .flower--1 .flower__line__leaf--3 {
+        animation: blooming-leaf-left var(--fl-speed) 1.2s backwards;
+      }
+      .flower--1 .flower__line__leaf--4 {
+        animation: blooming-leaf-left var(--fl-speed) 1s backwards;
+      }
+      .flower--1 .flower__line__leaf--5 {
+        animation: blooming-leaf-right var(--fl-speed) 1.8s backwards;
+      }
+      .flower--1 .flower__line__leaf--6 {
+        animation: blooming-leaf-left var(--fl-speed) 2s backwards;
+      }
+
+      .flower--2 {
+        left: 50%;
+        transform: rotate(20deg);
+        animation: moving-flower-2 4s linear infinite;
+      }
+      .flower--2 .flower__line {
+        height: 60vmin;
+        animation-delay: 0.6s;
+      }
+      .flower--2 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 1.9s backwards;
+      }
+      .flower--2 .flower__line__leaf--2 {
+        animation: blooming-leaf-right var(--fl-speed) 1.7s backwards;
+      }
+      .flower--2 .flower__line__leaf--3 {
+        animation: blooming-leaf-left var(--fl-speed) 1.5s backwards;
+      }
+      .flower--2 .flower__line__leaf--4 {
+        animation: blooming-leaf-left var(--fl-speed) 1.3s backwards;
+      }
+
+      .flower--3 {
+        left: 50%;
+        transform: rotate(-15deg);
+        animation: moving-flower-3 4s linear infinite;
+      }
+      .flower--3 .flower__line {
+        animation-delay: 0.9s;
+      }
+      .flower--3 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 2.5s backwards;
+      }
+      .flower--3 .flower__line__leaf--2 {
+        animation: blooming-leaf-right var(--fl-speed) 2.3s backwards;
+      }
+      .flower--3 .flower__line__leaf--3 {
+        animation: blooming-leaf-left var(--fl-speed) 2.1s backwards;
+      }
+      .flower--3 .flower__line__leaf--4 {
+        animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
+      }
+
+      .flower--4 {
+        left: 25%;
+        bottom: 5vmin;
+        transform: rotate(5deg) scale(0.85);
+        z-index: 11;
+        animation: moving-flower-4 5s linear infinite;
+      }
+      .flower--4 .flower__line {
+        height: 55vmin;
+        animation-delay: 0.2s;
+      }
+      .flower--4 .flower__leafs {
+        animation-delay: 0.8s;
+      }
+      .flower--4 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 1.2s backwards;
+      }
+      .flower--4 .flower__line__leaf--2 {
+        animation: blooming-leaf-left var(--fl-speed) 1s backwards;
+      }
+
+      .flower--5 {
+        left: -15%;
+        transform: rotate(-10deg);
+        z-index: 9;
+        animation: moving-flower-5 6s linear infinite;
+      }
+      .flower--5 .flower__line {
+        height: 80vmin;
+        animation-delay: 1.2s;
+      }
+      .flower--5 .flower__leafs {
+        animation-delay: 2.2s;
+      }
+      .flower--5 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 2.8s backwards;
+      }
+      .flower--5 .flower__line__leaf--2 {
+        animation: blooming-leaf-left var(--fl-speed) 2.6s backwards;
+      }
+
+      .flower--6 {
+        left: 80%;
+        transform: rotate(15deg);
+        z-index: 9;
+        animation: moving-flower-6 5.5s linear infinite;
+      }
+      .flower--6 .flower__line {
+        height: 75vmin;
+        animation-delay: 1.4s;
+      }
+      .flower--6 .flower__leafs {
+        animation-delay: 2.5s;
+      }
+      .flower--6 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 3s backwards;
+      }
+      .flower--6 .flower__line__leaf--2 {
+        animation: blooming-leaf-left var(--fl-speed) 2.8s backwards;
+      }
+
+      .flower--7 {
+        left: 35%;
+        transform: rotate(-5deg);
+        z-index: 8;
+        animation: moving-flower-7 7s linear infinite;
+      }
+      .flower--7 .flower__line {
+        height: 90vmin;
+        animation-delay: 1.8s;
+      }
+      .flower--7 .flower__leafs {
+        animation-delay: 2.8s;
+      }
+      .flower--7 .flower__line__leaf--1 {
+        animation: blooming-leaf-right var(--fl-speed) 3.5s backwards;
+      }
+      .flower--7 .flower__line__leaf--2 {
+        animation: blooming-leaf-left var(--fl-speed) 3.2s backwards;
+      }
+
+      .flower__leafs {
+        position: relative;
+        animation: blooming-flower 2s backwards;
+        cursor: pointer;
+        will-change: transform;
+      }
+      .flower__leafs--1 {
+        animation-delay: 1.1s;
+      }
+      .flower__leafs--2 {
+        animation-delay: 1.4s;
+      }
+      .flower__leafs--3 {
+        animation-delay: 1.7s;
+      }
+
+      .flower__leafs::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -100%);
+        width: 8vmin;
+        height: 8vmin;
+        background-color: var(--color-tallo-hoja);
+        filter: blur(8vmin);
+      }
+
+      .flower__leaf--1 {
+        transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);
+      }
+      .flower__leaf--2 {
+        transform: translate(-50%, -4%) rotateX(40deg);
+      }
+      .flower__leaf--3 {
+        transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);
+      }
+      .flower__leaf--4 {
+        width: 8vmin;
+        height: 8vmin;
+        transform-origin: bottom left;
+        border-radius: 4vmin 10vmin 4vmin 4vmin;
+        transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
+        background-image: linear-gradient(
+          to top,
+          var(--color-petalo-gradiente),
+          var(--color-petalo-principal)
+        );
+        z-index: 1;
+        opacity: 0.8;
+      }
+      .flower__white-circle {
+        position: absolute;
+        left: -3.5vmin;
+        top: -3vmin;
+        width: 9vmin;
+        height: 4vmin;
+        border-radius: 50%;
+        background-color: var(--color-centro-flor);
+      }
+      .flower__white-circle::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        height: 60%;
+        border-radius: inherit;
+        background-image:
+          radial-gradient(circle, rgba(0, 0, 0, 0.05) 20%, transparent 80%),
+          linear-gradient(
+            90deg,
+            var(--color-centro-flor-sombra),
+            var(--color-centro-flor-sombra)
+          );
+      }
+      .flower__line {
+        height: 55vmin;
+        width: 1.5vmin;
+        background-image:
+          linear-gradient(
+            to left,
+            var(--color-sombra-hojas),
+            transparent,
+            var(--color-luz-hojas)
+          ),
+          linear-gradient(
+            to top,
+            transparent 10%,
+            var(--color-tallo-principal),
+            var(--color-tallo-principal)
+          );
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+        animation: grow-flower-tree 4s backwards;
+      }
+      .flower__line__leaf {
+        --w: 7vmin;
+        --h: calc(var(--w) + 2vmin);
+        position: absolute;
+        top: 20%;
+        left: 90%;
+        width: var(--w);
+        height: var(--h);
+        border-top-right-radius: var(--h);
+        border-bottom-left-radius: var(--h);
+        background-image: linear-gradient(
+          to top,
+          rgba(122, 20, 20, 0.4),
+          var(--color-tallo-hoja)
+        ); /* Ajustado a rojizo */
+        will-change: transform;
+      }
+      .flower__line__leaf--1 {
+        transform: rotate(70deg) rotateY(30deg);
+      }
+      .flower__line__leaf--2 {
+        top: 45%;
+        transform: rotate(70deg) rotateY(30deg);
+      }
+      .flower__line__leaf--3,
+      .flower__line__leaf--4,
+      .flower__line__leaf--6 {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: var(--h);
+        border-bottom-right-radius: var(--h);
+        left: -460%;
+        top: 12%;
+        transform: rotate(-70deg) rotateY(30deg);
+      }
+      .flower__line__leaf--4 {
+        top: 40%;
+      }
+      .flower__line__leaf--5 {
+        top: 0;
+        transform-origin: left;
+        transform: rotate(70deg) rotateY(30deg) scale(0.6);
+      }
+      .flower__line__leaf--6 {
+        top: -2%;
+        left: -450%;
+        transform-origin: right;
+        transform: rotate(-70deg) rotateY(30deg) scale(0.6);
+      }
+
+      .flower__light {
+        position: absolute;
+        bottom: 0vmin;
+        width: 1vmin;
+        height: 1vmin;
+        background-color: var(--color-luz-particula-1);
+        border-radius: 50%;
+        filter: blur(0.2vmin);
+        animation: light-ans 4s linear infinite backwards;
+        will-change: transform, opacity;
+      }
+      .flower__light:nth-child(odd) {
+        background-color: var(--color-luz-particula-2);
+      }
+      .flower__light--1 {
+        left: -2vmin;
+        animation-delay: 1s;
+      }
+      .flower__light--2 {
+        left: 3vmin;
+        animation-delay: 0.5s;
+      }
+      .flower__light--3 {
+        left: -6vmin;
+        animation-delay: 0.3s;
+      }
+      .flower__light--4 {
+        left: 6vmin;
+        animation-delay: 0.9s;
+      }
+      .flower__light--5 {
+        left: -1vmin;
+        animation-delay: 1.5s;
+      }
+      .flower__light--6 {
+        left: -4vmin;
+        animation-delay: 3s;
+      }
+      .flower__light--7 {
+        left: 3vmin;
+        animation-delay: 2s;
+      }
+      .flower__light--8 {
+        left: -6vmin;
+        animation-delay: 3.5s;
+      }
+
+      .flower__grass {
+        --c: var(--color-pasto-brillante);
+        --line-w: 1.5vmin;
+        position: absolute;
+        bottom: 12vmin;
+        left: -7vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        z-index: 20;
+        transform-origin: bottom center;
+        transform: rotate(-48deg) rotateY(40deg);
+        will-change: transform;
+      }
+      .flower__grass--1 {
+        animation: moving-grass 2s linear infinite;
+      }
+      .flower__grass--2 {
+        left: 2vmin;
+        bottom: 10vmin;
+        transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+        opacity: 0.8;
+        z-index: 0;
+        animation: moving-grass--2 1.5s linear infinite;
+      }
+      .flower__grass--top {
+        width: 7vmin;
+        height: 10vmin;
+        border-top-right-radius: 100%;
+        border-right: var(--line-w) solid var(--c);
+        transform-origin: bottom center;
+        transform: rotate(-2deg);
+      }
+      .flower__grass--bottom {
+        margin-top: -2px;
+        width: var(--line-w);
+        height: 25vmin;
+        background-image: linear-gradient(to top, transparent, var(--c));
+      }
+      .flower__grass__leaf {
+        --size: 10vmin;
+        position: absolute;
+        width: calc(var(--size) * 2.1);
+        height: var(--size);
+        border-top-left-radius: var(--size);
+        border-top-right-radius: var(--size);
+        background-image: linear-gradient(
+          to top,
+          transparent,
+          transparent 30%,
+          var(--c)
+        );
+        z-index: 100;
+        will-change: transform;
+      }
+      .flower__grass__leaf--1 {
+        top: -6%;
+        left: 30%;
+        --size: 6vmin;
+        transform: rotate(-20deg);
+        animation: growing-grass-ans--1 2s 2.6s backwards;
+      }
+      .flower__grass__leaf--2 {
+        top: -5%;
+        left: -110%;
+        --size: 6vmin;
+        transform: rotate(10deg);
+        animation: growing-grass-ans--2 2s 2.4s linear backwards;
+      }
+      .flower__grass__leaf--3 {
+        top: 5%;
+        left: 60%;
+        --size: 8vmin;
+        transform: rotate(-18deg) rotateX(-20deg);
+        animation: growing-grass-ans--3 2s 2.2s linear backwards;
+      }
+      .flower__grass__leaf--4 {
+        top: 6%;
+        left: -135%;
+        --size: 8vmin;
+        transform: rotate(2deg);
+        animation: growing-grass-ans--4 2s 2s linear backwards;
+      }
+      .flower__grass__leaf--5 {
+        top: 20%;
+        left: 60%;
+        --size: 10vmin;
+        transform: rotate(-24deg) rotateX(-20deg);
+        animation: growing-grass-ans--5 2s 1.8s linear backwards;
+      }
+      .flower__grass__leaf--6 {
+        top: 22%;
+        left: -180%;
+        --size: 10vmin;
+        transform: rotate(10deg);
+        animation: growing-grass-ans--6 2s 1.6s linear backwards;
+      }
+      .flower__grass__leaf--7 {
+        top: 39%;
+        left: 70%;
+        --size: 10vmin;
+        transform: rotate(-10deg);
+        animation: growing-grass-ans--7 2s 1.4s linear backwards;
+      }
+      .flower__grass__leaf--8 {
+        top: 40%;
+        left: -215%;
+        --size: 11vmin;
+        transform: rotate(10deg);
+        animation: growing-grass-ans--8 2s 1.2s linear backwards;
+      }
+
+      .flower__grass__overlay {
+        position: absolute;
+        top: -10%;
+        right: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        filter: blur(1vmin);
+        z-index: 100;
+      }
+      .flower__g-long {
+        --w: 2vmin;
+        --h: 6vmin;
+        --c: var(--color-tallo-hoja);
+        position: absolute;
+        bottom: 10vmin;
+        left: -3vmin;
+        transform-origin: bottom center;
+        transform: rotate(-30deg) rotateY(-20deg);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        animation: flower-g-long-ans 3s linear infinite;
+        will-change: transform;
+      }
+      .flower__g-long__top {
+        top: calc(var(--h) * -1);
+        width: calc(var(--w) + 1vmin);
+        height: var(--h);
+        border-top-right-radius: 100%;
+        border-right: 0.7vmin solid var(--c);
+        transform: translate(-0.7vmin, 1vmin);
+      }
+      .flower__g-long__bottom {
+        width: var(--w);
+        height: 50vmin;
+        transform-origin: bottom center;
+        background-image: linear-gradient(to top, transparent 30%, var(--c));
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+        clip-path: polygon(35% 0, 65% 1%, 100% 100%, 0% 100%);
+      }
+      .flower__g-right {
+        position: absolute;
+        bottom: 6vmin;
+        left: -2vmin;
+        transform-origin: bottom left;
+        transform: rotate(20deg);
+        will-change: transform;
+      }
+      .flower__g-right .leaf {
+        width: 30vmin;
+        height: 50vmin;
+        border-top-left-radius: 100%;
+        border-left: 2vmin solid var(--color-pasto-brillante);
+        background-image: linear-gradient(
+          to bottom,
+          transparent,
+          var(--color-fondo-oscuro) 60%
+        );
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 30%,
+          var(--color-pasto-brillante) 60%
+        );
+      }
+      .flower__g-right--1 {
+        animation: flower-g-right-ans 2.5s linear infinite;
+      }
+      .flower__g-right--2 {
+        left: 5vmin;
+        transform: rotateY(-180deg);
+        animation: flower-g-right-ans--2 3s linear infinite;
+      }
+      .flower__g-right--2 .leaf {
+        height: 75vmin;
+        filter: blur(0.2vmin);
+        opacity: 0.8;
+      }
+
+      .flower__g-front {
+        position: absolute;
+        bottom: 6vmin;
+        left: 2.5vmin;
+        z-index: 100;
+        transform-origin: bottom center;
+        transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+        animation: flower__g-front-ans 2s linear infinite;
+        will-change: transform;
+      }
+      .flower__g-front__line {
+        width: 0.3vmin;
+        height: 20vmin;
+        background-image: linear-gradient(
+          to top,
+          transparent,
+          var(--color-pasto-brillante),
+          transparent 100%
+        );
+        position: relative;
+      }
+      .flower__g-front__leaf-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: bottom left;
+        transform: rotate(10deg);
+        will-change: transform;
+      }
+      .flower__g-front__leaf-wrapper:nth-child(even) {
+        left: 0vmin;
+        transform: rotateY(-180deg) rotate(5deg);
+        animation: flower__g-front__leaf-left-ans 1s ease-in backwards;
+      }
+      .flower__g-front__leaf-wrapper:nth-child(odd) {
+        animation: flower__g-front__leaf-ans 1s ease-in backwards;
+      }
+      .flower__g-front__leaf-wrapper--1 {
+        top: -8vmin;
+        transform: scale(0.7);
+        animation: flower__g-front__leaf-ans 1s 5.5s ease-in backwards !important;
+      }
+      .flower__g-front__leaf-wrapper--2 {
+        top: -8vmin;
+        transform: rotateY(-180deg) scale(0.7) !important;
+        animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+      }
+      .flower__g-front__leaf-wrapper--3 {
+        top: -3vmin;
+        animation: flower__g-front__leaf-ans 1s 4.6s ease-in backwards;
+      }
+      .flower__g-front__leaf-wrapper--4 {
+        top: -3vmin;
+        transform: rotateY(-180deg) scale(0.9) !important;
+        animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+      }
+      .flower__g-front__leaf-wrapper--5,
+      .flower__g-front__leaf-wrapper--6 {
+        top: 2vmin;
+      }
+      .flower__g-front__leaf-wrapper--7,
+      .flower__g-front__leaf-wrapper--8 {
+        top: 6.5vmin;
+      }
+      .flower__g-front__leaf-wrapper--2 {
+        animation-delay: 5.2s !important;
+      }
+      .flower__g-front__leaf-wrapper--3 {
+        animation-delay: 4.9s !important;
+      }
+      .flower__g-front__leaf-wrapper--5 {
+        animation-delay: 4.3s !important;
+      }
+      .flower__g-front__leaf-wrapper--6 {
+        animation-delay: 4.1s !important;
+      }
+      .flower__g-front__leaf-wrapper--7 {
+        animation-delay: 3.8s !important;
+      }
+      .flower__g-front__leaf-wrapper--8 {
+        animation-delay: 3.5s !important;
+      }
+
+      .flower__g-front__leaf {
+        width: 10vmin;
+        height: 10vmin;
+        border-radius: 100% 0% 0% 100%/100% 100% 0% 0%;
+        box-shadow: inset 0 2px 1vmin hsla(330, 97%, 58%, 0.2); /* Tintado rojizo */
+        background-image:
+          linear-gradient(
+            to bottom left,
+            transparent,
+            var(--color-fondo-oscuro)
+          ),
+          linear-gradient(
+            to bottom right,
+            var(--color-pasto-brillante) 50%,
+            transparent 50%,
+            transparent
+          );
+        -webkit-mask-image: linear-gradient(
+          to bottom right,
+          var(--color-pasto-brillante) 50%,
+          transparent 50%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          to bottom right,
+          var(--color-pasto-brillante) 50%,
+          transparent 50%,
+          transparent
+        );
+      }
+      .flower__g-fr {
+        position: absolute;
+        bottom: -4vmin;
+        left: vmin;
+        transform-origin: bottom left;
+        z-index: 10;
+        animation: flower__g-fr-ans 2s linear infinite;
+        will-change: transform;
+      }
+      .flower__g-fr .leaf {
+        width: 30vmin;
+        height: 50vmin;
+        border-top-left-radius: 100%;
+        border-left: 2vmin solid var(--color-pasto-brillante);
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 25%,
+          var(--color-pasto-brillante) 50%
+        );
+        position: relative;
+        z-index: 1;
+      }
+      .flower__g-fr__leaf {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10vmin;
+        height: 10vmin;
+        border-radius: 100% 0% 0% 100%/100% 100% 0% 0%;
+        box-shadow: inset 0 2px 1vmin hsla(330, 97%, 58%, 0.2);
+        background-image:
+          linear-gradient(
+            to bottom left,
+            transparent,
+            var(--color-fondo-oscuro) 98%
+          ),
+          linear-gradient(
+            to bottom right,
+            var(--color-pasto-brillante) 45%,
+            transparent 50%,
+            transparent
+          );
+        -webkit-mask-image: linear-gradient(
+          135deg,
+          var(--color-pasto-brillante) 40%,
+          transparent 50%,
+          transparent
+        );
+        will-change: transform;
+      }
+      .flower__g-fr__leaf--1 {
+        left: 20vmin;
+        transform: rotate(45deg);
+        animation: flower__g-fr-leaft-ans-1 0.5s 5.2s linear backwards;
+      }
+      .flower__g-fr__leaf--2 {
+        left: 12vmin;
+        top: -7vmin;
+        transform: rotate(25deg) rotateY(-180deg);
+        animation: flower__g-fr-leaft-ans-6 0.5s 5s linear backwards;
+      }
+      .flower__g-fr__leaf--3 {
+        left: 15vmin;
+        top: 6vmin;
+        transform: rotate(55deg);
+        animation: flower__g-fr-leaft-ans-5 0.5s 4.8s linear backwards;
+      }
+      .flower__g-fr__leaf--4 {
+        left: 6vmin;
+        top: -2vmin;
+        transform: rotate(25deg) rotateY(-180deg);
+        animation: flower__g-fr-leaft-ans-6 0.5s 4.6s linear backwards;
+      }
+      .flower__g-fr__leaf--5 {
+        left: 10vmin;
+        top: 14vmin;
+        transform: rotate(55deg);
+        animation: flower__g-fr-leaft-ans-5 0.5s 4.4s linear backwards;
+      }
+      .flower__g-fr__leaf--6 {
+        left: 0vmin;
+        top: 6vmin;
+        transform: rotate(25deg) rotateY(-180deg);
+        animation: flower__g-fr-leaft-ans-6 0.5s 4.2s linear backwards;
+      }
+      .flower__g-fr__leaf--7 {
+        left: 5vmin;
+        top: 22vmin;
+        transform: rotate(45deg);
+        animation: flower__g-fr-leaft-ans-7 0.5s 4s linear backwards;
+      }
+      .flower__g-fr__leaf--8 {
+        left: -4vmin;
+        top: 15vmin;
+        transform: rotate(15deg) rotateY(-180deg);
+        animation: flower__g-fr-leaft-ans-8 0.5s 3.8s linear backwards;
+      }
+
+      .long-g {
+        position: absolute;
+        bottom: 25vmin;
+        left: -42vmin;
+        transform-origin: bottom left;
+        will-change: transform;
+      }
+      .long-g--1 {
+        bottom: 0vmin;
+        transform: scale(0.8) rotate(-5deg);
+      }
+      .long-g--1 .leaf {
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 40%,
+          var(--color-pasto-brillante) 80%
+        ) !important;
+      }
+      .long-g--1 .leaf--1 {
+        --w: 5vmin;
+        --h: 60vmin;
+        left: -2vmin;
+        transform: rotate(3deg) rotateY(-180deg);
+      }
+      .long-g--2,
+      .long-g--3 {
+        bottom: -3vmin;
+        left: -35vmin;
+        transform-origin: center;
+        transform: scale(0.6) rotateX(60deg);
+      }
+      .long-g--2 .leaf,
+      .long-g--3 .leaf {
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 50%,
+          var(--color-pasto-brillante) 80%
+        ) !important;
+      }
+      .long-g--2 .leaf--1,
+      .long-g--3 .leaf--1 {
+        left: -1vmin;
+        transform: rotateY(-180deg);
+      }
+      .long-g--3 {
+        left: -17vmin;
+        bottom: 0vmin;
+      }
+      .long-g--3 .leaf {
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 40%,
+          var(--color-pasto-brillante) 80%
+        ) !important;
+      }
+      .long-g--4 {
+        left: 25vmin;
+        bottom: -3vmin;
+        transform-origin: center;
+        transform: scale(0.6) rotateX(60deg);
+      }
+      .long-g--4 .leaf {
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 50%,
+          var(--color-pasto-brillante) 80%
+        ) !important;
+      }
+      .long-g--5 {
+        left: 42vmin;
+        bottom: 0vmin;
+        transform: scale(0.8) rotate(2deg);
+      }
+      .long-g--6 {
+        left: 0vmin;
+        bottom: -20vmin;
+        z-index: 100;
+        filter: blur(0.2vmin);
+        transform: scale(0.8) rotate(2deg);
+      }
+      .long-g--7 {
+        left: 35vmin;
+        bottom: 20vmin;
+        z-index: -1;
+        filter: blur(0.2vmin);
+        transform: scale(0.6) rotate(2deg);
+        opacity: 0.7;
+      }
+      .long-g .leaf {
+        --w: 15vmin;
+        --h: 40vmin;
+        --c: var(--color-tallo-hoja);
+        position: absolute;
+        bottom: 0;
+        width: var(--w);
+        height: var(--h);
+        border-top-left-radius: 100%;
+        border-left: 2vmin solid var(--c);
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 20%,
+          var(--color-fondo-oscuro)
+        );
+        transform-origin: bottom center;
+        will-change: transform;
+      }
+      .long-g .leaf--0 {
+        left: 2vmin;
+        animation: leaf-ans-1 4s linear infinite;
+      }
+      .long-g .leaf--1 {
+        --w: 5vmin;
+        --h: 60vmin;
+        animation: leaf-ans-1 4s linear infinite;
+      }
+      .long-g .leaf--2 {
+        --w: 10vmin;
+        --h: 40vmin;
+        left: -0.5vmin;
+        bottom: 5vmin;
+        transform-origin: bottom left;
+        transform: rotateY(-180deg);
+        animation: leaf-ans-2 3s linear infinite;
+      }
+      .long-g .leaf--3 {
+        --w: 5vmin;
+        --h: 30vmin;
+        left: -1vmin;
+        bottom: 3.2vmin;
+        transform-origin: bottom left;
+        transform: rotate(-10deg) rotateY(-180deg);
+        animation: leaf-ans-3 3s linear infinite;
+      }
+
+      .grow-ans {
+        animation: grow-ans 2s var(--d) backwards;
+      }
+      .growing-grass {
+        animation: growing-grass-ans 1s 2s backwards;
+      }
+      .container * {
+        animation-play-state: paused !important;
+      }
+
+      @media (max-width: 600px) {
+        .flowers {
+          position: relative;
+          bottom: 10vh;
+          transform: scale(0.9);
+        }
+        .title-container {
+          flex-direction: column;
+          gap: 10px;
+          top: 3%;
+          justify-content: center;
+          align-items: center;
+        }
+        .title-image {
+          width: 150px;
+          height: 150px;
+        }
+      }
+
+      @keyframes grow-ans {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+      /* ANIMACIÓN OPTIMIZADA */
+      @keyframes glow-animation {
+        from {
+          text-shadow:
+            0 0 8px var(--color-titulo-neon),
+            0 0 20px #ff0055,
+            2px 2px 5px var(--color-sombra-titulo);
+        }
+        to {
+          text-shadow:
+            0 0 15px var(--color-titulo-neon),
+            0 0 35px #ff4da6,
+            2px 2px 5px var(--color-sombra-titulo);
+        }
+      }
+      @keyframes growing-grass-ans {
+        0% {
+          transform: scale(0);
+        }
+      }
+      @keyframes light-ans {
+        0% {
+          opacity: 0;
+          transform: translateY(0vmin);
+        }
+        25% {
+          opacity: 1;
+          transform: translateY(-5vmin) translateX(-2vmin);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-15vmin) translateX(2vmin);
+        }
+        75% {
+          transform: translateY(-20vmin) translateX(-2vmin);
+        }
+        100% {
+          transform: translateY(-30vmin);
+          opacity: 0;
+        }
+      }
+      @keyframes moving-flower-1 {
+        0%,
+        100% {
+          transform: rotate(2deg);
+        }
+        50% {
+          transform: rotate(-2deg);
+        }
+      }
+      @keyframes moving-flower-2 {
+        0%,
+        100% {
+          transform: rotate(18deg);
+        }
+        50% {
+          transform: rotate(14deg);
+        }
+      }
+      @keyframes moving-flower-3 {
+        0%,
+        100% {
+          transform: rotate(-18deg);
+        }
+        50% {
+          transform: rotate(-20deg) rotateY(-10deg);
+        }
+      }
+      @keyframes moving-flower-4 {
+        0%,
+        100% {
+          transform: rotate(5deg) scale(0.85);
+        }
+        50% {
+          transform: rotate(0deg) scale(0.85);
+        }
+      }
+      @keyframes moving-flower-5 {
+        0%,
+        100% {
+          transform: rotate(-10deg);
+        }
+        50% {
+          transform: rotate(-15deg);
+        }
+      }
+      @keyframes moving-flower-6 {
+        0%,
+        100% {
+          transform: rotate(15deg);
+        }
+        50% {
+          transform: rotate(20deg);
+        }
+      }
+      @keyframes moving-flower-7 {
+        0%,
+        100% {
+          transform: rotate(-2deg);
+        }
+        50% {
+          transform: rotate(2deg);
+        }
+      }
+      @keyframes blooming-leaf-right {
+        0% {
+          transform-origin: left;
+          transform: rotate(70deg) rotateY(30deg) scale(0);
+        }
+      }
+      @keyframes blooming-leaf-left {
+        0% {
+          transform-origin: right;
+          transform: rotate(-70deg) rotateY(30deg) scale(0);
+        }
+      }
+      @keyframes grow-flower-tree {
+        0% {
+          height: 0;
+          border-radius: 1vmin;
+        }
+      }
+      @keyframes blooming-flower {
+        0% {
+          transform: scale(0);
+        }
+      }
+      @keyframes moving-grass {
+        0%,
+        100% {
+          transform: rotate(-48deg) rotateY(40deg);
+        }
+        50% {
+          transform: rotate(-50deg) rotateY(40deg);
+        }
+      }
+      @keyframes moving-grass--2 {
+        0%,
+        100% {
+          transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+        }
+        50% {
+          transform: scale(0.5) rotate(79deg) rotateX(10deg) rotateY(-200deg);
+        }
+      }
+      @keyframes growing-grass-ans--1 {
+        0% {
+          transform-origin: bottom left;
+          transform: rotate(-20deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--2 {
+        0% {
+          transform-origin: bottom right;
+          transform: rotate(10deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--3 {
+        0% {
+          transform-origin: bottom left;
+          transform: rotate(-18deg) rotateX(-20deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--4 {
+        0% {
+          transform-origin: bottom right;
+          transform: rotate(2deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--5 {
+        0% {
+          transform-origin: bottom left;
+          transform: rotate(-24deg) rotateX(-20deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--6 {
+        0% {
+          transform-origin: bottom right;
+          transform: rotate(10deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--7 {
+        0% {
+          transform-origin: bottom left;
+          transform: rotate(-10deg) scale(0);
+        }
+      }
+      @keyframes growing-grass-ans--8 {
+        0% {
+          transform-origin: bottom right;
+          transform: rotate(10deg) scale(0);
+        }
+      }
+      @keyframes flower-g-long-ans {
+        0%,
+        100% {
+          transform: rotate(-30deg) rotateY(-20deg);
+        }
+        50% {
+          transform: rotate(-32deg) rotateY(-20deg);
+        }
+      }
+      @keyframes flower-g-right-ans {
+        0%,
+        100% {
+          transform: rotate(20deg);
+        }
+        50% {
+          transform: rotate(24deg) rotateX(-20deg);
+        }
+      }
+      @keyframes flower-g-right-ans--2 {
+        0%,
+        100% {
+          transform: rotateY(-180deg) rotate(0deg) rotateX(-20deg);
+        }
+        50% {
+          transform: rotateY(-180deg) rotate(6deg) rotateX(-20deg);
+        }
+      }
+      @keyframes flower__g-front-ans {
+        0%,
+        100% {
+          transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+        }
+        50% {
+          transform: rotate(-35deg) rotateY(40deg) scale(1.04);
+        }
+      }
+      @keyframes flower__g-front__leaf-left-ans-2 {
+        0% {
+          transform: rotateY(-180deg) scale(0);
+        }
+      }
+      @keyframes flower__g-front__leaf-ans {
+        0% {
+          transform: rotate(10deg) scale(0);
+        }
+      }
+      @keyframes flower__g-front__leaf-left-ans {
+        0% {
+          transform: rotateY(-180deg) rotate(5deg) scale(0);
+        }
+      }
+      @keyframes flower__g-fr-ans {
+        0%,
+        100% {
+          transform: rotate(2deg);
+        }
+        50% {
+          transform: rotate(4deg);
+        }
+      }
+      @keyframes flower__g-fr-leaft-ans-1 {
+        0% {
+          transform-origin: left;
+          transform: rotate(45deg) scale(0);
+        }
+      }
+      @keyframes flower__g-fr-leaft-ans-5 {
+        0% {
+          transform-origin: left;
+          transform: rotate(55deg) scale(0);
+        }
+      }
+      @keyframes flower__g-fr-leaft-ans-6 {
+        0% {
+          transform-origin: right;
+          transform: rotate(25deg) rotateY(-180deg) scale(0);
+        }
+      }
+      @keyframes flower__g-fr-leaft-ans-7 {
+        0% {
+          transform-origin: left;
+          transform: rotate(45deg) scale(0);
+        }
+      }
+      @keyframes flower__g-fr-leaft-ans-8 {
+        0% {
+          transform-origin: right;
+          transform: rotate(15deg) rotateY(-180deg) scale(0);
+        }
+      }
+      @keyframes leaf-ans-1 {
+        0%,
+        100% {
+          transform: rotate(-5deg) scale(1);
+        }
+        50% {
+          transform: rotate(5deg) scale(1.1);
+        }
+      }
+      @keyframes leaf-ans-2 {
+        0%,
+        100% {
+          transform: rotateY(-180deg) rotate(5deg);
+        }
+        50% {
+          transform: rotateY(-180deg) rotate(0deg) scale(1.1);
+        }
+      }
+      @keyframes leaf-ans-3 {
+        0%,
+        100% {
+          transform: rotate(-10deg) rotateY(-180deg);
+        }
+        50% {
+          transform: rotate(-20deg) rotateY(-180deg);
+        }
+      }
+
+      #audio-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: opacity 0.8s ease;
+      }
+
+      .overlay-content {
+        text-align: center;
+        color: var(--color-overlay-title);
+        font-family: sans-serif;
+      }
+
+      .overlay-content h2 {
+        font-family: "Sour Gummy", sans-serif;
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: 40px;
+        color: var(--color-overlay-title);
+        text-shadow: 0 0 8px var(--color-overlay-title-neon);
+        font-weight: 400;
+      }
+
+      .overlay-image {
+        max-width: 150px;
+        width: 100vw;
+        height: auto;
+        animation: heartbeat 1.2s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px var(--color-overlay-glow))
+          drop-shadow(0 0 25px var(--color-overlay-glow));
+      }
+
+      #audio-overlay .overlay-image {
+        animation-play-state: running !important;
+      }
+
+      /* ANIMACIÓN OPTIMIZADA */
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+          filter: drop-shadow(0 0 10px var(--color-overlay-glow));
+        }
+        40% {
+          transform: scale(1.15);
+          filter: drop-shadow(0 0 25px var(--color-overlay-glow));
+        }
+      }
+
+      .background-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        opacity: 0;
+        animation: background-sparkle 25s linear infinite;
+        will-change: transform, opacity;
+      }
+
+      @keyframes background-sparkle {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      body:not(.container) .title-container {
+        opacity: 1;
+      }
+
+      /* ACTUALIZACIÓN DE ESTILOS DE TULIPANES A TONOS ROSAS/ROJOS */
+      .flower.tulip-style .flower__leaf {
+        width: 5vmin;
+        height: 10vmin;
+        /* Gradiente actualizado a rosas */
+        background: radial-gradient(
+          circle at 50% 20%,
+          #ffbad2 0%,
+          #ff5e99 40%,
+          #ff0055 100%
+        );
+        border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+        z-index: 2;
+        border: 1.5px solid #55001a;
+        box-shadow:
+          0 0 0.5vmin rgba(158, 68, 88, 0.5),
+          inset 0 0 1.5vmin rgba(255, 255, 255, 0.2);
+      }
+
+      .flower.tulip-style .flower__leaf--1 {
+        transform: translate(-50%, -5%) rotate(-22deg);
+        z-index: 1;
+      }
+      .flower.tulip-style .flower__leaf--2 {
+        transform: translate(-50%, -5%) rotate(22deg);
+        z-index: 1;
+      }
+      .flower.tulip-style .flower__leaf--3 {
+        transform: translate(-50%, -10%) rotate(0deg);
+        z-index: 2;
+      }
+
+      .flower.tulip-style .flower__leaf--4,
+      .flower.tulip-style .flower__leaf--5,
+      .flower.tulip-style .flower__leaf--6 {
+        width: 5.5vmin;
+        height: 9.5vmin;
+        /* Gradiente actualizado a púrpuras rojizos */
+        background: radial-gradient(
+          circle at 50% 20%,
+          #f7bed6 0%,
+          #f7347b 50%,
+          #8a0d33 100%
+        );
+        opacity: 0.9;
+        border: 1px solid #b86a80;
+        border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%;
+        box-shadow: inset 0 0 1vmin rgba(255, 255, 255, 0.2);
+        z-index: 3;
+      }
+
+      .flower.tulip-style .flower__leaf--4 {
+        transform: translate(-50%, -8%) rotate(-10deg);
+      }
+      .flower.tulip-style .flower__leaf--5 {
+        transform: translate(-50%, -8%) rotate(10deg);
+      }
+      .flower.tulip-style .flower__leaf--6 {
+        transform: translate(-50%, -12%) rotate(0deg);
+      }
+
+      .flower--8 {
+        left: -10%;
+        bottom: 2vmin;
+        transform: rotate(-10deg) scale(0.9);
+        z-index: 12;
+        animation: moving-flower-5 5s linear infinite;
+      }
+      .flower--8 .flower__line {
+        height: 45vmin;
+      }
+
+      .flower--9 {
+        left: 65%;
+        bottom: 2vmin;
+        transform: rotate(10deg) scale(0.9);
+        z-index: 12;
+        animation: moving-flower-6 5s linear infinite;
+      }
+      .flower--9 .flower__line {
+        height: 45vmin;
+      }
+
+      .flower--10 {
+        left: 27%;
+        bottom: -3svmin;
+        transform: rotate(0deg) scale(0.8);
+        z-index: 13;
+        animation: moving-flower-4 6s linear infinite;
+      }
+      .flower--10 .flower__line {
+        height: 40vmin;
+      }
+
+      .flower--11 {
+        left: 27%;
+        bottom: 12vmin;
+        transform: rotate(2deg) scale(0.85);
+        z-index: 10;
+        animation: moving-flower-7 7s linear infinite;
+      }
+      .flower--11 .flower__line {
+        height: 50vmin;
+      }
+
+      #starry-sky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .shooting-star {
+        position: absolute;
+        background: linear-gradient(
+          -45deg,
+          rgba(255, 255, 255, 1),
+          rgba(255, 255, 255, 0)
+        );
+        width: 80px;
+        height: 2px;
+        border-radius: 999px;
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+        animation: shooting 3s linear infinite;
+        will-change: transform, opacity;
+      }
+
+      @keyframes shooting {
+        0% {
+          transform: translateX(0) translateY(0) rotate(-45deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-1500px) translateY(1500px) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+
+      .twinkling-star {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        animation: twinkle 2s ease-in-out infinite;
+        will-change: opacity;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      #love-card-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        backdrop-filter: blur(5px);
+        cursor: pointer;
+      }
+
+      #love-card {
+        position: relative;
+        width: 80%;
+        max-width: 280px;
+        aspect-ratio: 9 / 16;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+        /* Sombras actualizadas a rosa */
+        box-shadow:
+          0 0 25px #ff0077,
+          0 0 40px #ff5ca8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        text-align: center;
+        overflow: hidden;
+        font-family: "Indie Flower", cursive;
+        cursor: default;
+      }
+
+      #love-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      #love-card-text {
+        position: relative;
+        font-size: clamp(3em, 7vw, 2.8em);
+        color: #ffffff;
+        text-shadow:
+          2px 2px 4px rgba(0, 0, 0, 0.75),
+          0 0 10px black;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body class="">
+    <div id="starry-sky">
+      <div
+        class="twinkling-star"
+        style="
+          top: 8.52639%;
+          left: 42.7202%;
+          width: 1.25331px;
+          height: 1.25331px;
+          animation-duration: 4.32955s;
+          animation-delay: 2.56016s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 72.2871%;
+          left: 94.9384%;
+          width: 1.27409px;
+          height: 1.27409px;
+          animation-duration: 4.45924s;
+          animation-delay: 2.54261s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 0.825983%;
+          left: 87.5405%;
+          width: 1.32528px;
+          height: 1.32528px;
+          animation-duration: 3.99174s;
+          animation-delay: 0.918282s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 74.2943%;
+          left: 21.9959%;
+          width: 2.60039px;
+          height: 2.60039px;
+          animation-duration: 4.58265s;
+          animation-delay: 1.26448s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 37.0981%;
+          left: 82.14%;
+          width: 1.93714px;
+          height: 1.93714px;
+          animation-duration: 4.94523s;
+          animation-delay: 0.0885429s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 77.8291%;
+          left: 76.0891%;
+          width: 2.78083px;
+          height: 2.78083px;
+          animation-duration: 4.48957s;
+          animation-delay: 0.683403s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 31.6254%;
+          left: 17.4206%;
+          width: 1.39639px;
+          height: 1.39639px;
+          animation-duration: 4.53108s;
+          animation-delay: 2.31731s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 98.0665%;
+          left: 31.9406%;
+          width: 2.35219px;
+          height: 2.35219px;
+          animation-duration: 2.98182s;
+          animation-delay: 0.00225323s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 66.3802%;
+          left: 13.1573%;
+          width: 1.22635px;
+          height: 1.22635px;
+          animation-duration: 2.18179s;
+          animation-delay: 2.26767s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 25.9935%;
+          left: 5.68199%;
+          width: 1.44312px;
+          height: 1.44312px;
+          animation-duration: 3.25548s;
+          animation-delay: 1.8715s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 1.31903%;
+          left: 67.505%;
+          width: 2.65726px;
+          height: 2.65726px;
+          animation-duration: 2.95309s;
+          animation-delay: 2.77251s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 17.3655%;
+          left: 23.6037%;
+          width: 2.88063px;
+          height: 2.88063px;
+          animation-duration: 2.40279s;
+          animation-delay: 0.832244s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 55.1384%;
+          left: 30.0254%;
+          width: 1.06249px;
+          height: 1.06249px;
+          animation-duration: 3.20746s;
+          animation-delay: 2.86615s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 38.2644%;
+          left: 71.1496%;
+          width: 2.8022px;
+          height: 2.8022px;
+          animation-duration: 2.67543s;
+          animation-delay: 2.79063s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 9.3131%;
+          left: 55.5843%;
+          width: 2.67049px;
+          height: 2.67049px;
+          animation-duration: 3.61863s;
+          animation-delay: 2.51622s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 67.8621%;
+          left: 30.6084%;
+          width: 2.66342px;
+          height: 2.66342px;
+          animation-duration: 2.97348s;
+          animation-delay: 1.07087s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 39.322%;
+          left: 79.965%;
+          width: 1.48196px;
+          height: 1.48196px;
+          animation-duration: 4.7187s;
+          animation-delay: 1.1769s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 5.64052%;
+          left: 96.3541%;
+          width: 2.88489px;
+          height: 2.88489px;
+          animation-duration: 3.25117s;
+          animation-delay: 0.714893s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 41.6249%;
+          left: 86.817%;
+          width: 1.81566px;
+          height: 1.81566px;
+          animation-duration: 2.34788s;
+          animation-delay: 2.44588s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 37.4529%;
+          left: 52.1592%;
+          width: 1.39248px;
+          height: 1.39248px;
+          animation-duration: 2.3672s;
+          animation-delay: 2.68906s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 9.52189%;
+          left: 53.2752%;
+          width: 1.25013px;
+          height: 1.25013px;
+          animation-duration: 4.72857s;
+          animation-delay: 2.7702s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 15.2457%;
+          left: 43.8698%;
+          width: 2.1515px;
+          height: 2.1515px;
+          animation-duration: 4.53737s;
+          animation-delay: 1.82735s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 44.5044%;
+          left: 29.0293%;
+          width: 2.7723px;
+          height: 2.7723px;
+          animation-duration: 4.42708s;
+          animation-delay: 1.65729s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 69.7108%;
+          left: 84.3839%;
+          width: 1.41895px;
+          height: 1.41895px;
+          animation-duration: 4.00119s;
+          animation-delay: 2.77784s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 38.3341%;
+          left: 61.5494%;
+          width: 1.43224px;
+          height: 1.43224px;
+          animation-duration: 3.2894s;
+          animation-delay: 2.59421s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 40.289%;
+          left: 48.2615%;
+          width: 2.38571px;
+          height: 2.38571px;
+          animation-duration: 2.91024s;
+          animation-delay: 1.27734s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 64.8318%;
+          left: 17.5127%;
+          width: 2.72887px;
+          height: 2.72887px;
+          animation-duration: 2.63217s;
+          animation-delay: 0.835214s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 50.9435%;
+          left: 74.5267%;
+          width: 1.45974px;
+          height: 1.45974px;
+          animation-duration: 4.99882s;
+          animation-delay: 1.16216s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 59.2233%;
+          left: 83.8086%;
+          width: 2.45137px;
+          height: 2.45137px;
+          animation-duration: 4.30885s;
+          animation-delay: 2.76346s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 27.4242%;
+          left: 63.2404%;
+          width: 2.49257px;
+          height: 2.49257px;
+          animation-duration: 4.3066s;
+          animation-delay: 1.24287s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 57.6901%;
+          left: 85.793%;
+          width: 1.72703px;
+          height: 1.72703px;
+          animation-duration: 4.70305s;
+          animation-delay: 0.390242s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 62.5106%;
+          left: 49.7374%;
+          width: 2.07852px;
+          height: 2.07852px;
+          animation-duration: 4.9521s;
+          animation-delay: 2.7571s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 53.1801%;
+          left: 73.0745%;
+          width: 2.35896px;
+          height: 2.35896px;
+          animation-duration: 4.65061s;
+          animation-delay: 1.50037s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 93.7494%;
+          left: 63.8291%;
+          width: 1.68932px;
+          height: 1.68932px;
+          animation-duration: 4.99034s;
+          animation-delay: 0.960644s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 4.79379%;
+          left: 82.5849%;
+          width: 1.75522px;
+          height: 1.75522px;
+          animation-duration: 4.91103s;
+          animation-delay: 1.80679s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 69.8662%;
+          left: 61.9568%;
+          width: 1.93825px;
+          height: 1.93825px;
+          animation-duration: 4.03107s;
+          animation-delay: 0.335685s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 5.97366%;
+          left: 7.57769%;
+          width: 2.98736px;
+          height: 2.98736px;
+          animation-duration: 4.28836s;
+          animation-delay: 1.9583s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 70.4803%;
+          left: 84.0898%;
+          width: 2.23017px;
+          height: 2.23017px;
+          animation-duration: 2.08772s;
+          animation-delay: 0.943978s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 49.0859%;
+          left: 45.9879%;
+          width: 1.64766px;
+          height: 1.64766px;
+          animation-duration: 3.11657s;
+          animation-delay: 2.3812s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 55.2969%;
+          left: 52.6024%;
+          width: 1.51188px;
+          height: 1.51188px;
+          animation-duration: 3.72915s;
+          animation-delay: 2.33977s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 35.15%;
+          left: 36.7764%;
+          width: 2.11532px;
+          height: 2.11532px;
+          animation-duration: 4.48083s;
+          animation-delay: 2.06843s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 36.8602%;
+          left: 19.5222%;
+          width: 2.70472px;
+          height: 2.70472px;
+          animation-duration: 4.62942s;
+          animation-delay: 0.70686s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 6.17568%;
+          left: 36.7959%;
+          width: 1.22361px;
+          height: 1.22361px;
+          animation-duration: 4.20135s;
+          animation-delay: 1.55576s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 99.1399%;
+          left: 69.1327%;
+          width: 2.4506px;
+          height: 2.4506px;
+          animation-duration: 3.23962s;
+          animation-delay: 0.617971s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 2.65363%;
+          left: 90.3392%;
+          width: 2.09786px;
+          height: 2.09786px;
+          animation-duration: 2.62679s;
+          animation-delay: 2.71228s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 64.3933%;
+          left: 3.03671%;
+          width: 1.63642px;
+          height: 1.63642px;
+          animation-duration: 3.32276s;
+          animation-delay: 1.62868s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 59.8491%;
+          left: 98.7871%;
+          width: 2.91919px;
+          height: 2.91919px;
+          animation-duration: 4.08949s;
+          animation-delay: 0.715926s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 22.4897%;
+          left: 66.0501%;
+          width: 1.46522px;
+          height: 1.46522px;
+          animation-duration: 2.84661s;
+          animation-delay: 1.80645s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 74.2126%;
+          left: 87.7559%;
+          width: 1.91844px;
+          height: 1.91844px;
+          animation-duration: 4.45185s;
+          animation-delay: 0.928601s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 14.9288%;
+          left: 18.6737%;
+          width: 2.91155px;
+          height: 2.91155px;
+          animation-duration: 4.79922s;
+          animation-delay: 1.74757s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 68.2444%;
+          left: 47.6833%;
+          width: 1.08743px;
+          height: 1.08743px;
+          animation-duration: 4.62957s;
+          animation-delay: 2.8114s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 68.5916%;
+          left: 33.2097%;
+          width: 1.05368px;
+          height: 1.05368px;
+          animation-duration: 3.46287s;
+          animation-delay: 2.76243s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 25.7875%;
+          left: 79.7982%;
+          width: 1.69078px;
+          height: 1.69078px;
+          animation-duration: 3.77709s;
+          animation-delay: 1.74031s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 91.6331%;
+          left: 29.8826%;
+          width: 1.11417px;
+          height: 1.11417px;
+          animation-duration: 2.39146s;
+          animation-delay: 0.11842s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 22.1682%;
+          left: 83.7585%;
+          width: 1.07883px;
+          height: 1.07883px;
+          animation-duration: 3.7017s;
+          animation-delay: 0.891777s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 75.7342%;
+          left: 30.1813%;
+          width: 2.82784px;
+          height: 2.82784px;
+          animation-duration: 3.1725s;
+          animation-delay: 2.64532s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 45.3674%;
+          left: 91.7369%;
+          width: 1.44428px;
+          height: 1.44428px;
+          animation-duration: 2.05353s;
+          animation-delay: 1.40603s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 15.1085%;
+          left: 78.4353%;
+          width: 1.3676px;
+          height: 1.3676px;
+          animation-duration: 3.60694s;
+          animation-delay: 0.817742s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 30.4521%;
+          left: 13.4574%;
+          width: 1.78057px;
+          height: 1.78057px;
+          animation-duration: 4.27823s;
+          animation-delay: 2.33091s;
+        "
+      ></div>
+      <div
+        class="twinkling-star"
+        style="
+          top: 70.3415%;
+          left: 20.1652%;
+          width: 2.60555px;
+          height: 2.60555px;
+          animation-duration: 3.36663s;
+          animation-delay: 1.94808s;
+        "
+      ></div>
+      <div
+        class="shooting-star"
+        style="
+          top: -147.403px;
+          left: 1113.31px;
+          animation-duration: 1.65783s;
+          animation-delay: 6.54455s;
+        "
+      ></div>
+      <div
+        class="shooting-star"
+        style="
+          top: -496.69px;
+          left: 1720.89px;
+          animation-duration: 2.85935s;
+          animation-delay: 6.50404s;
+        "
+      ></div>
+      <div
+        class="shooting-star"
+        style="
+          top: -406.091px;
+          left: 746.594px;
+          animation-duration: 2.6046s;
+          animation-delay: 2.38271s;
+        "
+      ></div>
+    </div>
+
+    <div id="audio-overlay" style="opacity: 0; display: none">
+      <div class="overlay-content">
+        <h2>Toca para abrir</h2>
+        <img
+          src="assets/log.webp"
+          alt="Tocar para iniciar"
+          class="overlay-image"
+        />
+      </div>
+    </div>
+    <div class="background-particles">
+      <div
+        class="particle"
+        style="
+          left: 87.4176vw;
+          animation-duration: 10.2235s;
+          width: 1.98728px;
+          height: 1.98728px;
+          animation-delay: 3.44173s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 93.8909vw;
+          animation-duration: 14.222s;
+          width: 1.41383px;
+          height: 1.41383px;
+          animation-delay: 2.85211s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 12.2677vw;
+          animation-duration: 7.26688s;
+          width: 1.501px;
+          height: 1.501px;
+          animation-delay: 0.0783453s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 64.7919vw;
+          animation-duration: 11.4269s;
+          width: 3.32676px;
+          height: 3.32676px;
+          animation-delay: 8.21138s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 39.0842vw;
+          animation-duration: 9.11235s;
+          width: 2.30776px;
+          height: 2.30776px;
+          animation-delay: 8.49944s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 6.44984vw;
+          animation-duration: 9.76434s;
+          width: 1.52275px;
+          height: 1.52275px;
+          animation-delay: 8.81028s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 96.9849vw;
+          animation-duration: 13.4615s;
+          width: 1.29604px;
+          height: 1.29604px;
+          animation-delay: 5.10149s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 38.3237vw;
+          animation-duration: 10.4237s;
+          width: 2.67714px;
+          height: 2.67714px;
+          animation-delay: 4.46239s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 9.35385vw;
+          animation-duration: 13.89s;
+          width: 1.3707px;
+          height: 1.3707px;
+          animation-delay: 2.65728s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 79.8949vw;
+          animation-duration: 8.82487s;
+          width: 2.11568px;
+          height: 2.11568px;
+          animation-delay: 7.30235s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 84.8299vw;
+          animation-duration: 11.3836s;
+          width: 1.60567px;
+          height: 1.60567px;
+          animation-delay: 4.92433s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 23.5482vw;
+          animation-duration: 12.8836s;
+          width: 1.04829px;
+          height: 1.04829px;
+          animation-delay: 1.99965s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 18.1428vw;
+          animation-duration: 9.94479s;
+          width: 2.12347px;
+          height: 2.12347px;
+          animation-delay: 6.72363s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 5.94005vw;
+          animation-duration: 14.8557s;
+          width: 2.67364px;
+          height: 2.67364px;
+          animation-delay: 0.577272s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 12.0613vw;
+          animation-duration: 9.54476s;
+          width: 2.46957px;
+          height: 2.46957px;
+          animation-delay: 7.30547s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 20.4139vw;
+          animation-duration: 13.0912s;
+          width: 2.20909px;
+          height: 2.20909px;
+          animation-delay: 8.74194s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 15.7977vw;
+          animation-duration: 14.3189s;
+          width: 1.64043px;
+          height: 1.64043px;
+          animation-delay: 4.871s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 57.835vw;
+          animation-duration: 10.6772s;
+          width: 2.84708px;
+          height: 2.84708px;
+          animation-delay: 9.73755s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 34.2629vw;
+          animation-duration: 8.11569s;
+          width: 3.17194px;
+          height: 3.17194px;
+          animation-delay: 3.60621s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 34.3629vw;
+          animation-duration: 9.19578s;
+          width: 3.96287px;
+          height: 3.96287px;
+          animation-delay: 7.4997s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 61.592vw;
+          animation-duration: 14.6373s;
+          width: 3.91114px;
+          height: 3.91114px;
+          animation-delay: 9.75763s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 98.819vw;
+          animation-duration: 14.7568s;
+          width: 1.00009px;
+          height: 1.00009px;
+          animation-delay: 0.562787s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 12.0634vw;
+          animation-duration: 8.3179s;
+          width: 2.7706px;
+          height: 2.7706px;
+          animation-delay: 4.72497s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 54.1652vw;
+          animation-duration: 9.00924s;
+          width: 2.29259px;
+          height: 2.29259px;
+          animation-delay: 1.9873s;
+        "
+      ></div>
+      <div
+        class="particle"
+        style="
+          left: 33.7557vw;
+          animation-duration: 8.42252s;
+          width: 2.18895px;
+          height: 2.18895px;
+          animation-delay: 4.13815s;
+        "
+      ></div>
+    </div>
+
+    <audio id="background-music" src="assets/sound.mp3" loop=""></audio>
+
+    <div class="title-container">
+      <h1 class="main-title">Feliz San Valentín</h1>
+      <h1 class="main-title">💖</h1>
+    </div>
+
+    <div class="night"></div>
+
+    <div class="flowers">
+      <div class="flower flower--1">
+        <div class="flower__leafs flower__leafs--1">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+          <div class="flower__line__leaf flower__line__leaf--5"></div>
+          <div class="flower__line__leaf flower__line__leaf--6"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--2">
+        <div class="flower__leafs flower__leafs--2">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--3">
+        <div class="flower__leafs flower__leafs--3">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--4">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--5">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--6">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--7">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--8 tulip-style">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--9 tulip-style">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+      <div class="flower flower--10 tulip-style">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="flower flower--11 tulip-style">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
+      <div class="grow-ans" style="--d: 1.2s">
+        <div class="flower__g-long">
+          <div class="flower__g-long__top"></div>
+          <div class="flower__g-long__bottom"></div>
+        </div>
+      </div>
+
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--1">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--2">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+
+      <div class="grow-ans" style="--d: 2.4s">
+        <div class="flower__g-right flower__g-right--1">
+          <div class="leaf"></div>
+        </div>
+      </div>
+
+      <div class="grow-ans" style="--d: 2.8s">
+        <div class="flower__g-right flower__g-right--2">
+          <div class="leaf"></div>
+        </div>
+      </div>
+
+      <div class="grow-ans" style="--d: 2.8s">
+        <div class="flower__g-front">
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div
+            class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8"
+          >
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__line"></div>
+        </div>
+      </div>
+
+      <div class="grow-ans" style="--d: 3.2s">
+        <div class="flower__g-fr">
+          <div class="leaf"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--0">
+        <div class="grow-ans" style="--d: 3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 2.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--1">
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.8s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--2">
+        <div class="grow-ans" style="--d: 4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--3">
+        <div class="grow-ans" style="--d: 4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--4">
+        <div class="grow-ans" style="--d: 4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--5">
+        <div class="grow-ans" style="--d: 4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--6">
+        <div class="grow-ans" style="--d: 4.2s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.4s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.6s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 4.8s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+
+      <div class="long-g long-g--7">
+        <div class="grow-ans" style="--d: 3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.5s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d: 3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="love-card-overlay" style="display: none">
+      <div
+        id="love-card"
+        style="background-image: url(&quot;assets/img2.webp&quot;)"
+      >
+        <p id="love-card-text">Eres mi persona favorita.</p>
+      </div>
+    </div>
+  </body>
+</html>
