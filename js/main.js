@@ -664,6 +664,7 @@ function init() {
 
     console.log('✨ Experiencia lista!');
     console.log('💡 Pista: Mantén presionado algo especial... 🤫');
+    console.log('💖 Pista: Doble click en el título libera corazones... 💕');
 }
 
 // ==========================================
@@ -879,6 +880,7 @@ function setupTitleEasterEgg() {
     const titles = document.querySelectorAll('.main-title');
     
     titles.forEach(title => {
+        // Para desktop: doble click
         title.addEventListener('dblclick', () => {
             // Crear corazones aleatorios
             for (let i = 0; i < 10; i++) {
@@ -891,6 +893,31 @@ function setupTitleEasterEgg() {
             
             console.log('💕 Easter egg activado!');
         });
+
+        // Para móvil: doble tap
+        let lastTap = 0;
+        title.addEventListener('touchend', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+
+            if (tapLength < 400 && tapLength > 0) {
+                // Doble tap detectado
+                e.preventDefault();
+                
+                // Crear corazones aleatorios
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * window.innerHeight;
+                        createFloatingHeart(x, y);
+                    }, i * 100);
+                }
+                
+                console.log('💕 Easter egg activado en móvil!');
+            }
+            
+            lastTap = currentTime;
+        }, { passive: false });
     });
 }
 
