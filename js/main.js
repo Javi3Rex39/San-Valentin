@@ -641,6 +641,7 @@ function init() {
 
     // Configurar eventos
     setupFlowerEvents();
+    setupSecretLetterTrigger(); // Easter egg de la carta
 
     // Configurar overlay inicial
     const overlay = document.getElementById('audio-overlay');
@@ -662,6 +663,151 @@ function init() {
     // Las animaciones están pausadas hasta que el usuario haga click
 
     console.log('✨ Experiencia lista!');
+    console.log('💡 Pista: Hay un secreto escondido... 🤫');
+}
+
+// ==========================================
+// CARTA SECRETA (EASTER EGG)
+// ==========================================
+
+/**
+ * Abre la carta secreta con animación
+ */
+function openSecretLetter() {
+    const overlay = document.getElementById('secret-letter-overlay');
+    if (!overlay) return;
+
+    // Reproducir sonido especial
+    playLetterSound();
+
+    // Mostrar overlay
+    overlay.style.display = 'flex';
+    
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 10);
+
+    // Generar pétalos cayendo
+    generateFallingPetals();
+
+    console.log('💌 Carta secreta revelada!');
+}
+
+/**
+ * Cierra la carta secreta
+ */
+function closeSecretLetter() {
+    const overlay = document.getElementById('secret-letter-overlay');
+    if (!overlay) return;
+
+    // Reproducir sonido de cierre
+    playCloseSound();
+
+    overlay.classList.remove('active');
+
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        
+        // Limpiar pétalos
+        const petalsContainer = document.getElementById('falling-petals');
+        if (petalsContainer) {
+            petalsContainer.innerHTML = '';
+        }
+    }, 500);
+}
+
+/**
+ * Genera pétalos cayendo
+ */
+function generateFallingPetals() {
+    const container = document.getElementById('falling-petals');
+    if (!container) return;
+
+    // Limpiar pétalos anteriores
+    container.innerHTML = '';
+
+    const petalEmojis = ['🌸', '🌺', '🌹', '💮', '🏵️'];
+    
+    for (let i = 0; i < 20; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+        
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDelay = Math.random() * 2 + 's';
+        petal.style.animationDuration = (3 + Math.random() * 2) + 's';
+        
+        container.appendChild(petal);
+    }
+}
+
+/**
+ * Sonido especial para abrir la carta
+ */
+function playLetterSound() {
+    if (!config.enableSounds) return;
+    
+    const ctx = initAudioContext();
+    
+    // Secuencia mágica y romántica
+    const melody = [
+        { freq: 523.25, time: 0 },     // C5
+        { freq: 659.25, time: 0.15 },  // E5
+        { freq: 783.99, time: 0.3 },   // G5
+        { freq: 1046.50, time: 0.45 }, // C6
+        { freq: 1318.51, time: 0.6 },  // E6
+        { freq: 1568, time: 0.75 },    // G6
+        { freq: 2093, time: 0.9 }      // C7
+    ];
+    
+    melody.forEach(note => {
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(note.freq, ctx.currentTime);
+        
+        gainNode.gain.setValueAtTime(0, ctx.currentTime + note.time);
+        gainNode.gain.linearRampToValueAtTime(0.1, ctx.currentTime + note.time + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + 1);
+        
+        oscillator.start(ctx.currentTime + note.time);
+        oscillator.stop(ctx.currentTime + note.time + 1);
+    });
+}
+
+/**
+ * Configura el evento de doble click en el contador
+ */
+function setupSecretLetterTrigger() {
+    const counter = document.getElementById('days-counter');
+    if (!counter) return;
+
+    let clickCount = 0;
+    let clickTimer = null;
+
+    counter.addEventListener('click', () => {
+        clickCount++;
+
+        if (clickCount === 1) {
+            clickTimer = setTimeout(() => {
+                clickCount = 0;
+            }, 400);
+        } else if (clickCount === 2) {
+            clearTimeout(clickTimer);
+            clickCount = 0;
+            
+            // Abrir carta secreta
+            openSecretLetter();
+        }
+    });
+
+    // Agregar cursor pointer para dar pista
+    counter.style.cursor = 'pointer';
+    counter.title = '💡 Pssst... prueba hacer doble click aquí';
 }
 
 // ==========================================
