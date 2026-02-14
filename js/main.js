@@ -663,7 +663,7 @@ function init() {
     // Las animaciones están pausadas hasta que el usuario haga click
 
     console.log('✨ Experiencia lista!');
-    console.log('💡 Pista: Hay un secreto escondido... 🤫');
+    console.log('💡 Pista: Mantén presionado algo especial... 🤫');
 }
 
 // ==========================================
@@ -783,47 +783,70 @@ function playLetterSound() {
 }
 
 /**
- * Configura el evento de doble click en el contador (compatible con móvil)
+ * Configura el evento de mantener presionado en el contador
  */
 function setupSecretLetterTrigger() {
     const counter = document.getElementById('days-counter');
     if (!counter) return;
 
-    let clickCount = 0;
-    let clickTimer = null;
-    let lastTap = 0;
+    let pressTimer = null;
+    let isLongPress = false;
 
-    // Para desktop: doble click
-    counter.addEventListener('dblclick', (e) => {
+    // Para desktop: mantener click
+    counter.addEventListener('mousedown', (e) => {
         e.preventDefault();
-        openSecretLetter();
+        isLongPress = false;
+        
+        // Agregar clase visual de presión
+        counter.classList.add('pressing');
+        
+        pressTimer = setTimeout(() => {
+            isLongPress = true;
+            openSecretLetter();
+            counter.classList.remove('pressing');
+        }, 800); // 800ms = 0.8 segundos
     });
 
-    // Para móvil: doble tap
+    counter.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+        counter.classList.remove('pressing');
+    });
+
+    counter.addEventListener('mouseleave', () => {
+        clearTimeout(pressTimer);
+        counter.classList.remove('pressing');
+    });
+
+    // Para móvil: mantener toque
+    counter.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        isLongPress = false;
+        
+        // Agregar clase visual de presión
+        counter.classList.add('pressing');
+        
+        pressTimer = setTimeout(() => {
+            isLongPress = true;
+            openSecretLetter();
+            counter.classList.remove('pressing');
+        }, 800);
+    }, { passive: false });
+
     counter.addEventListener('touchend', (e) => {
         e.preventDefault();
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTap;
-
-        if (tapLength < 400 && tapLength > 0) {
-            // Doble tap detectado
-            openSecretLetter();
-            clickCount = 0;
-        } else {
-            // Primer tap
-            clickCount = 1;
-        }
-        
-        lastTap = currentTime;
+        clearTimeout(pressTimer);
+        counter.classList.remove('pressing');
     }, { passive: false });
+
+    counter.addEventListener('touchcancel', () => {
+        clearTimeout(pressTimer);
+        counter.classList.remove('pressing');
+    });
 
     // Agregar cursor pointer para dar pista
     counter.style.cursor = 'pointer';
-    counter.title = '💡 Pssst... prueba hacer doble click aquí';
+    counter.title = '💡 Mantén presionado aquí para descubrir algo especial';
     
-    // Agregar clase para hover visual
-    counter.classList.add('secret-trigger');
-
     // Configurar botón de cerrar carta
     const closeBtn = document.getElementById('letter-close-btn');
     if (closeBtn) {
