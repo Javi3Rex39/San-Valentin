@@ -4,6 +4,8 @@
 
 const config = {
     enableMusic: true, // Cambiar a false para deshabilitar música
+    enableSounds: true, // Efectos de sonido
+    startDate: '2024-11-08', // Fecha de inicio de la relación (YYYY-MM-DD)
     starCount: 60,
     shootingStarCount: 3,
     particleCount: 25,
@@ -21,6 +23,244 @@ const config = {
 
 let audioContext = null;
 let musicPlaying = false;
+
+// ==========================================
+// CONTADOR DE DÍAS
+// ==========================================
+
+/**
+ * Calcula el tiempo exacto desde la fecha de inicio
+ */
+function calculateTimeTogether() {
+    const startDate = new Date(config.startDate + 'T00:00:00');
+    const now = new Date();
+    
+    // Calcular diferencia total en milisegundos
+    let diff = now - startDate;
+    
+    // Calcular cada unidad
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    diff -= years * (1000 * 60 * 60 * 24 * 365.25);
+    
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+    diff -= months * (1000 * 60 * 60 * 24 * 30.44);
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= days * (1000 * 60 * 60 * 24);
+    
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    diff -= hours * (1000 * 60 * 60);
+    
+    const minutes = Math.floor(diff / (1000 * 60));
+    diff -= minutes * (1000 * 60);
+    
+    const seconds = Math.floor(diff / 1000);
+    
+    return { years, months, days, hours, minutes, seconds };
+}
+
+/**
+ * Formatea el tiempo de manera bonita
+ */
+function formatTimeTogether(time) {
+    const parts = [];
+    
+    if (time.years > 0) {
+        parts.push(`${time.years} ${time.years === 1 ? 'año' : 'años'}`);
+    }
+    if (time.months > 0) {
+        parts.push(`${time.months} ${time.months === 1 ? 'mes' : 'meses'}`);
+    }
+    if (time.days > 0) {
+        parts.push(`${time.days} ${time.days === 1 ? 'día' : 'días'}`);
+    }
+    if (time.hours > 0) {
+        parts.push(`${time.hours} ${time.hours === 1 ? 'hora' : 'horas'}`);
+    }
+    if (time.minutes > 0) {
+        parts.push(`${time.minutes} ${time.minutes === 1 ? 'minuto' : 'minutos'}`);
+    }
+    if (time.seconds > 0) {
+        parts.push(`${time.seconds} ${time.seconds === 1 ? 'segundo' : 'segundos'}`);
+    }
+    
+    // Si no hay nada, mostrar "recién empezamos"
+    if (parts.length === 0) {
+        return "Recién empezamos 💕";
+    }
+    
+    // Unir con comas y "y" antes del último elemento
+    if (parts.length === 1) {
+        return parts[0];
+    } else if (parts.length === 2) {
+        return parts.join(' y ');
+    } else {
+        const last = parts.pop();
+        return parts.join(', ') + ' y ' + last;
+    }
+}
+
+/**
+ * Actualiza el contador de días en el DOM
+ */
+function updateDaysCounter() {
+    const counter = document.getElementById('days-counter');
+    if (!counter) return;
+    
+    const time = calculateTimeTogether();
+    const formattedTime = formatTimeTogether(time);
+    counter.textContent = `${formattedTime} juntos 💕`;
+    
+    // Actualizar cada segundo para que sea en tiempo real
+    setTimeout(updateDaysCounter, 1000);
+}
+
+// ==========================================
+// EFECTOS DE SONIDO
+// ==========================================
+
+/**
+ * Inicializa el contexto de audio
+ */
+function initAudioContext() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioContext;
+}
+
+/**
+ * Reproduce un sonido cristalino al tocar una flor
+ */
+function playFlowerSound() {
+    if (!config.enableSounds) return;
+    
+    const ctx = initAudioContext();
+    
+    // Crear múltiples tonos para efecto cristalino
+    const frequencies = [
+        1318.51, // E6
+        1975.53, // B6
+        2637.02  // E7
+    ];
+    
+    frequencies.forEach((freq, index) => {
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        // Usar triangle wave para sonido más cristalino
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(freq, ctx.currentTime);
+        
+        const delay = index * 0.03;
+        
+        // Envelope muy delicado
+        gainNode.gain.setValueAtTime(0, ctx.currentTime + delay);
+        gainNode.gain.linearRampToValueAtTime(0.08, ctx.currentTime + delay + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.5);
+        
+        oscillator.start(ctx.currentTime + delay);
+        oscillator.stop(ctx.currentTime + delay + 0.5);
+    });
+}
+
+/**
+ * Reproduce un sonido mágico cristalino al aparecer la tarjeta
+ */
+function playCardSound() {
+    if (!config.enableSounds) return;
+    
+    const ctx = initAudioContext();
+    
+    // Arpeggio ascendente tipo cascada cristalina
+    const notes = [
+        { freq: 523.25, time: 0 },     // C5
+        { freq: 659.25, time: 0.06 },  // E5
+        { freq: 783.99, time: 0.12 },  // G5
+        { freq: 1046.50, time: 0.18 }, // C6
+        { freq: 1318.51, time: 0.24 }  // E6
+    ];
+    
+    notes.forEach(note => {
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+        
+        oscillator.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        // Filtro pasa-altos para sonido más brillante
+        filter.type = 'highpass';
+        filter.frequency.setValueAtTime(800, ctx.currentTime);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(note.freq, ctx.currentTime);
+        
+        // Envelope cristalino
+        gainNode.gain.setValueAtTime(0, ctx.currentTime + note.time);
+        gainNode.gain.linearRampToValueAtTime(0.12, ctx.currentTime + note.time + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + 0.8);
+        
+        oscillator.start(ctx.currentTime + note.time);
+        oscillator.stop(ctx.currentTime + note.time + 0.8);
+    });
+    
+    // Agregar un toque de "brillo" con frecuencias altas
+    setTimeout(() => {
+        const shimmer = ctx.createOscillator();
+        const shimmerGain = ctx.createGain();
+        
+        shimmer.connect(shimmerGain);
+        shimmerGain.connect(ctx.destination);
+        
+        shimmer.type = 'sine';
+        shimmer.frequency.setValueAtTime(2637.02, ctx.currentTime); // E7
+        
+        shimmerGain.gain.setValueAtTime(0, ctx.currentTime);
+        shimmerGain.gain.linearRampToValueAtTime(0.05, ctx.currentTime + 0.01);
+        shimmerGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+        
+        shimmer.start(ctx.currentTime);
+        shimmer.stop(ctx.currentTime + 0.6);
+    }, 250);
+}
+
+/**
+ * Reproduce un sonido suave al cerrar la tarjeta
+ */
+function playCloseSound() {
+    if (!config.enableSounds) return;
+    
+    const ctx = initAudioContext();
+    
+    // Dos notas descendentes suaves
+    const notes = [
+        { freq: 1046.50, time: 0 },    // C6
+        { freq: 523.25, time: 0.08 }   // C5
+    ];
+    
+    notes.forEach(note => {
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(note.freq, ctx.currentTime);
+        
+        gainNode.gain.setValueAtTime(0, ctx.currentTime + note.time);
+        gainNode.gain.linearRampToValueAtTime(0.08, ctx.currentTime + note.time + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + 0.4);
+        
+        oscillator.start(ctx.currentTime + note.time);
+        oscillator.stop(ctx.currentTime + note.time + 0.4);
+    });
+}
 
 // ==========================================
 // GENERADORES DE ELEMENTOS DINÁMICOS
@@ -213,6 +453,9 @@ function showLoveCard(message) {
     
     if (!overlay || !cardText || !card) return;
 
+    // Reproducir sonido mágico
+    playCardSound();
+
     // Establecer el mensaje
     cardText.textContent = message || getRandomLoveMessage();
 
@@ -253,6 +496,9 @@ function hideLoveCard() {
     
     if (!overlay) return;
 
+    // Reproducir sonido de cierre
+    playCloseSound();
+
     overlay.classList.remove('active');
 
     setTimeout(() => {
@@ -281,6 +527,9 @@ function setupFlowerEvents() {
         flower.addEventListener('click', (e) => {
             e.stopPropagation();
             
+            // Reproducir sonido de flor
+            playFlowerSound();
+            
             // Efecto visual al hacer click
             flower.style.transform = 'scale(1.1)';
             setTimeout(() => {
@@ -303,6 +552,9 @@ function setupFlowerEvents() {
         flower.addEventListener('touchend', (e) => {
             e.preventDefault();
             e.stopPropagation();
+            
+            // Reproducir sonido de flor
+            playFlowerSound();
             
             flower.style.transform = 'scale(1.1)';
             setTimeout(() => {
@@ -379,6 +631,9 @@ document.head.appendChild(style);
  */
 function init() {
     console.log('💖 Iniciando experiencia de San Valentín...');
+
+    // Actualizar contador de días
+    updateDaysCounter();
 
     // Generar elementos dinámicos
     generateStarrySky();

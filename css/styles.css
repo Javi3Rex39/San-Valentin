@@ -134,6 +134,38 @@ body:not(.paused) .title-container {
     animation: glow-animation 2s ease-in-out infinite alternate;
 }
 
+.days-counter {
+    color: #ffb3d9;
+    font-family: "Indie Flower", cursive;
+    font-size: clamp(1rem, 3.5vw, 1.6rem);
+    text-align: center;
+    margin: 8px 0;
+    padding: 0 15px;
+    text-shadow: 
+        0 0 8px rgba(255, 105, 180, 0.6),
+        0 0 15px rgba(255, 20, 147, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: days-glow 3s ease-in-out infinite;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    max-width: 95%;
+}
+
+@keyframes days-glow {
+    0%, 100% {
+        text-shadow: 
+            0 0 8px rgba(255, 105, 180, 0.6),
+            0 0 15px rgba(255, 20, 147, 0.4);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(255, 105, 180, 0.9),
+            0 0 30px rgba(255, 20, 147, 0.7),
+            0 0 45px rgba(255, 0, 85, 0.5);
+    }
+}
+
 @keyframes glow-animation {
     from {
         text-shadow: 0 0 8px var(--color-titulo-neon),
