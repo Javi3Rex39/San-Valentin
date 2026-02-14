@@ -716,6 +716,9 @@ function closeSecretLetter() {
     }, 500);
 }
 
+// Hacer la función global para el botón HTML
+window.closeSecretLetter = closeSecretLetter;
+
 /**
  * Genera pétalos cayendo
  */
@@ -780,7 +783,7 @@ function playLetterSound() {
 }
 
 /**
- * Configura el evento de doble click en el contador
+ * Configura el evento de doble click en el contador (compatible con móvil)
  */
 function setupSecretLetterTrigger() {
     const counter = document.getElementById('days-counter');
@@ -788,26 +791,58 @@ function setupSecretLetterTrigger() {
 
     let clickCount = 0;
     let clickTimer = null;
+    let lastTap = 0;
 
-    counter.addEventListener('click', () => {
-        clickCount++;
-
-        if (clickCount === 1) {
-            clickTimer = setTimeout(() => {
-                clickCount = 0;
-            }, 400);
-        } else if (clickCount === 2) {
-            clearTimeout(clickTimer);
-            clickCount = 0;
-            
-            // Abrir carta secreta
-            openSecretLetter();
-        }
+    // Para desktop: doble click
+    counter.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        openSecretLetter();
     });
+
+    // Para móvil: doble tap
+    counter.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        if (tapLength < 400 && tapLength > 0) {
+            // Doble tap detectado
+            openSecretLetter();
+            clickCount = 0;
+        } else {
+            // Primer tap
+            clickCount = 1;
+        }
+        
+        lastTap = currentTime;
+    }, { passive: false });
 
     // Agregar cursor pointer para dar pista
     counter.style.cursor = 'pointer';
     counter.title = '💡 Pssst... prueba hacer doble click aquí';
+    
+    // Agregar clase para hover visual
+    counter.classList.add('secret-trigger');
+
+    // Configurar botón de cerrar carta
+    const closeBtn = document.getElementById('letter-close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSecretLetter);
+        closeBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            closeSecretLetter();
+        }, { passive: false });
+    }
+
+    // Configurar cerrar al hacer click fuera de la carta
+    const letterOverlay = document.getElementById('secret-letter-overlay');
+    if (letterOverlay) {
+        letterOverlay.addEventListener('click', (e) => {
+            if (e.target === letterOverlay) {
+                closeSecretLetter();
+            }
+        });
+    }
 }
 
 // ==========================================

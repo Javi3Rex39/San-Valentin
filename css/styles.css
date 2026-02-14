@@ -150,6 +150,31 @@ body:not(.paused) .title-container {
     letter-spacing: 0.5px;
     line-height: 1.4;
     max-width: 95%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.days-counter:hover,
+.days-counter:active {
+    transform: scale(1.05);
+    text-shadow: 
+        0 0 15px rgba(255, 105, 180, 0.9),
+        0 0 30px rgba(255, 20, 147, 0.7),
+        0 0 45px rgba(255, 0, 85, 0.5);
+}
+
+.days-counter::after {
+    content: "💡";
+    font-size: 0.8em;
+    opacity: 0;
+    margin-left: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.days-counter:hover::after {
+    opacity: 0.6;
 }
 
 @keyframes days-glow {
